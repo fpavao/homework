@@ -4,7 +4,7 @@
  */
 public class LazySingleton {
 
-    private static LazySingleton instance = null;
+    private static volatile LazySingleton instance = null;
 
     private LazySingleton() {
     }

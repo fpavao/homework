@@ -2,7 +2,7 @@
  * @author Fabio Pavao
  * @since 25/12/11
  */
-public class LazySingleton {
+public final class LazySingleton {
 
     private static volatile LazySingleton instance = null;
 
@@ -10,11 +10,14 @@ public class LazySingleton {
     }
 
     public static LazySingleton getInstance() {
-        if (instance == null)
-            instance = new LazySingleton();
-
-        return  instance;
+        if (instance == null) {
+            synchronized(LazySingleton.class) {
+                if (instance == null) {
+                    instance = new LazySingleton();
+                }
+            }
+        }
+        return instance;
     }
-
 
 }
